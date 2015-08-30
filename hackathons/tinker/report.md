@@ -14,7 +14,6 @@
 ## Visualization
 
 {% svg %}
-{% set numbers=[83,106,156,10,68] %}
 
 <!-- a barchart -->
 	<rect x="0" width="20" height="83" style="fill:rgb(0,0,255);stroke-width:3;stroke:rgb(0,0,0)" />
