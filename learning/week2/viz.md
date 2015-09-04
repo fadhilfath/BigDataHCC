@@ -19,21 +19,21 @@ including the controls, widgets ...etc.
 
 (write your answer based on the statistics you can find online)
 
-# (Question 1)
+# How many students are in Computer Science?
 
 ![screenshot](screenshot.png)
 
 (write your explanation for the reader as to where to look at this chart in order
     to see the answer)
 
-# (Question 2)
+# How many student's name start with 'A'?
 
 ![screenshot](screenshot.png)
 
 (write your explanation for the reader as to where to look at this chart in order
     to see the answer)
 
-# (Question 3)
+# How many students are not in Computer Science?
 
 ![screenshot](screenshot.png)
 

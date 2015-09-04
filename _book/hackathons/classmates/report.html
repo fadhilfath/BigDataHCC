@@ -37,10 +37,8 @@
         
     
     
-    <link rel="next" href="../../hackathons/classmates/index.html" />
     
-    
-    <link rel="prev" href="../../hackathons/tinker/method.html" />
+    <link rel="prev" href="../../hackathons/classmates/analysis.html" />
     
 
         <!-- head:end -->
@@ -48,7 +46,7 @@
     <body>
         <!-- body:start -->
         
-    <div class="book" data-level="2.1.2" data-basepath="../.." data-revision="Thu Sep 03 2015 19:09:28 GMT-0600 (MDT)">
+    <div class="book" data-level="2.2.4" data-basepath="../.." data-revision="Thu Sep 03 2015 19:09:28 GMT-0600 (MDT)">
     
 
 <div class="book-summary">
@@ -314,7 +312,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="2.1.2" data-path="hackathons/tinker/report.html">
+        <li class="chapter " data-level="2.1.2" data-path="hackathons/tinker/report.html">
             
                 
                     <a href="../../hackathons/tinker/report.html">
@@ -395,7 +393,7 @@
             
         </li>
     
-        <li class="chapter " data-level="2.2.4" data-path="hackathons/classmates/report.html">
+        <li class="chapter active" data-level="2.2.4" data-path="hackathons/classmates/report.html">
             
                 
                     <a href="../../hackathons/classmates/report.html">
@@ -525,51 +523,66 @@
                 
                     <section class="normal" id="section-">
                     
-                        <h1 id="q-what-are-the-number-of-commits">Q: What are the number of commits?</h1>
-<h2 id="data">Data</h2>
-<table>
-<thead>
-<tr>
-<th>Project</th>
-<th style="text-align:left">Number of Commits</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Fouber/blog</td>
-<td style="text-align:left">83</td>
-</tr>
-<tr>
-<td>Michaeldfallew/git-radar</td>
-<td style="text-align:left">106</td>
-</tr>
-<tr>
-<td>falrum/falurum</td>
-<td style="text-align:left">156</td>
-</tr>
-<tr>
-<td>Girliemac/ RPI-kittyCam</td>
-<td style="text-align:left">10</td>
-</tr>
-<tr>
-<td>Chneukirchew/nq</td>
-<td style="text-align:left">68</td>
-</tr>
-</tbody>
-</table>
-<h2 id="visualization">Visualization</h2>
-<p><svg height="300" width="500">
+                        <h1 id="report">Report</h1>
+<p>As a class, we brainstormed and came up with a long list of further questions we can ask based
+on the &quot;self-introduction&quot; data. Out of these questions, our team chose to tackle on
+the following:</p>
+<h1 id="how-many-students-are-in-computer-science">How many students are in Computer Science?</h1>
+<p><pre>
+<span class="keyword">var</span> text = data.comments
+<span class="keyword">var</span> major = _.filter(_.pluck(text,<span class="string">&apos;body&apos;</span>),<span class="keyword">function</span>(n){
+    <span class="keyword">return</span> _.includes(n,<span class="string">&quot;Computer Science&quot;</span>) || _.includes(n,<span class="string">&quot;CS&quot;</span>)
+})
 
-<!-- a barchart -->
-	<rect x="0" width="20" height="83" style="fill:rgb(0,0,255);stroke-width:3;stroke:rgb(0,0,0)"/>
-	<rect x="30" width="20" height="106" style="fill:rgb(0,0,255);stroke-width:3;stroke:rgb(0,0,0)"/>
-	<rect x="60" width="20" height="156" style="fill:rgb(0,0,255);stroke-width:3;stroke:rgb(0,0,0)"/>
-	<rect x="90" width="20" height="10" style="fill:rgb(0,0,255);stroke-width:3;stroke:rgb(0,0,0)"/>
-	<rect x="120" width="20" height="68" style="fill:rgb(0,0,255);stroke-width:3;stroke:rgb(0,0,0)"/>
+<span class="keyword">return</span> _.size(major)
 
-</svg></p>
-<h2 id="recommendation">Recommendation</h2>
-<p>I recommended using svg framework, it is easy to use in the markdown.</p>
+<span class="keyword">return</span> <span class="string">&quot;[answer]&quot;</span>
+</pre></p>
+<p>The answer is 20.</p>
+<h1 id="how-many-student-s-name-starts-with-a">How many student&apos;s name starts with &apos;A&apos;?</h1>
+<p><pre>
+
+
+<span class="keyword">var</span> <span class="keyword">list</span>=_.filter(_.pluck(data.comments, <span class="string">&apos;body&apos;</span>), <span class="keyword">function</span>(text){ 
+    <span class="keyword">var</span> a=text.split(<span class="string">&quot;\r\n&quot;</span>)[<span class="number">0</span>] 
+    <span class="keyword">var</span> name=_.last(text.split(<span class="string">&quot;Name:&quot;</span>)) 
+    <span class="keyword">return</span> name.charAt(<span class="number">1</span>) == <span class="string">&apos;A&apos;</span> 
+}) 
+
+<span class="keyword">return</span> _.size(<span class="keyword">list</span>)
+
+</pre></p>
+<p>The answer is 4</p>
+<h1 id="how-many-students-are-not-in-computer-science-major">How many students are not in Computer Science major?</h1>
+<p><pre>
+
+<span class="keyword">var</span> text = data.comments
+<span class="keyword">var</span> major = _.filter(_.pluck(text,<span class="string">&apos;body&apos;</span>),<span class="keyword">function</span>(n){
+    <span class="keyword">return</span> _.includes(n,<span class="string">&quot;Computer Science&quot;</span>) || _.includes(n,<span class="string">&quot;CS&quot;</span>)
+})
+
+<span class="keyword">return</span> data.comments.length - _.size(major)
+
+
+<span class="keyword">return</span> <span class="string">&quot;[answer]&quot;</span>
+</pre>
+The answer is 6</p>
+<h1 id="what-is-the-id-number-of-zhilli-zhya215">What is the ID number of Zhilli(zhya215)?</h1>
+<p><pre>
+<span class="keyword">var</span> text = data.comments
+<span class="keyword">var</span> a = _.filter(text,<span class="keyword">function</span>(n){
+    <span class="keyword">return</span> _.includes(n.user,<span class="string">&quot;zhya215&quot;</span>)
+})
+
+<span class="keyword">var</span> y = _.pluck(a,<span class="string">&apos;user.id&apos;</span>)
+
+<span class="keyword">return</span> y
+
+
+
+<span class="keyword">return</span> <span class="string">&quot;[answer]&quot;</span>
+</pre></p>
+<p>The answer is 5596113</p>
 
                     
                     </section>
@@ -580,10 +593,8 @@
         </div>
 
         
-        <a href="../../hackathons/tinker/method.html" class="navigation navigation-prev " aria-label="Previous page: Method"><i class="fa fa-angle-left"></i></a>
+        <a href="../../hackathons/classmates/analysis.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page: Analysis"><i class="fa fa-angle-left"></i></a>
         
-        
-        <a href="../../hackathons/classmates/index.html" class="navigation navigation-next " aria-label="Next page: Classmates"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>
