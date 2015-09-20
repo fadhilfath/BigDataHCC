@@ -5,7 +5,7 @@
         <!-- head:start -->
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <title>Report | book</title>
+        <title>Week 4 | book</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 2.2.0">
@@ -37,8 +37,10 @@
         
     
     
+    <link rel="next" href="../../learning/week4/report.html" />
     
-    <link rel="prev" href="../../hackathons/fcq/warmup.html" />
+    
+    <link rel="prev" href="../../learning/week3/lodash-groupby.html" />
     
 
         <!-- head:end -->
@@ -46,7 +48,7 @@
     <body>
         <!-- body:start -->
         
-    <div class="book" data-level="2.3.2" data-basepath="../.." data-revision="Sun Sep 20 2015 17:03:52 GMT-0600 (MDT)">
+    <div class="book" data-level="1.5" data-basepath="../.." data-revision="Sun Sep 20 2015 17:03:52 GMT-0600 (MDT)">
     
 
 <div class="book-summary">
@@ -326,7 +328,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.5" data-path="learning/week4/index.html">
+        <li class="chapter active" data-level="1.5" data-path="learning/week4/index.html">
             
                 
                     <a href="../../learning/week4/index.html">
@@ -561,7 +563,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="2.3.2" data-path="hackathons/fcq/report.html">
+        <li class="chapter " data-level="2.3.2" data-path="hackathons/fcq/report.html">
             
                 
                     <a href="../../hackathons/fcq/report.html">
@@ -691,146 +693,12 @@
                 
                     <section class="normal" id="section-">
                     
-                        <p></p>
-<h1 id="report">Report</h1>
-<p>As a class, we brainstormed and came up with a long list of further questions we
-can ask based on the FCQ data. Out of these questions, our team chose to tackle on
-the following questions. Each member on our team is reponsible for one question.</p>
-<h1 id="how-many-courses-in-iphy-that-have-4-credits-hours">How many courses in IPHY that have 4 credits hours ?</h1>
-<p><pre>
-<span class="keyword">var</span> course = _.filter(data,<span class="keyword">function</span>(n){
-    <span class="keyword">return</span> n[<span class="string">&apos;CrsPBADept&apos;</span>] == <span class="string">&apos;IPHY&apos;</span>
-})
-<span class="keyword">var</span> hour = _.filter(course,<span class="keyword">function</span>(d){
-    <span class="keyword">return</span> d[<span class="string">&apos;Hours&apos;</span>] == <span class="number">4</span>
-})
-
-<span class="keyword">return</span> _.size(hour)
-</pre></p>
-<p>They are 9 courses in IPHY that have 4 credits hour.</p>
-<h1 id="what-departments-offer-the-most-4000-level-classess-by-brian">What departments offer the most 4000 level classess? By Brian</h1>
-<p><pre>
-<span class="keyword">var</span> group = _.groupBy(data,<span class="keyword">function</span>(college){
-    <span class="keyword">return</span> college[<span class="string">&apos;Subject&apos;</span>]
-})
-
-<span class="keyword">var</span> courseLevels = _.mapValues(group,<span class="keyword">function</span>(a){
-    <span class="keyword">return</span> _.map(a,<span class="keyword">function</span>(b){
-        <span class="keyword">return</span> b[<span class="string">&apos;Course&apos;</span>]
-    })	
-})
-<span class="keyword">var</span> count = <span class="number">0</span>
-<span class="keyword">var</span> levelCount = _.mapValues(courseLevels,<span class="keyword">function</span>(level){
-    count = <span class="number">0</span>
-    <span class="keyword">return</span> _.map(level,<span class="keyword">function</span>(n){
-        <span class="keyword">if</span>(n &gt;= <span class="number">4000</span> &amp;&amp; n &lt; <span class="number">5000</span>){
-        count++
-    }
-    <span class="keyword">return</span> count
-    })
-})
-
-<span class="keyword">var</span> result = _.mapValues(levelCount,<span class="keyword">function</span>(n){
-    <span class="keyword">return</span> _.max(n)
-})
-<span class="keyword">return</span> _.pick(result,<span class="keyword">function</span>(number){
-    <span class="keyword">return</span> number == _.max(result)
-})
-
-</pre></p>
-<table>
-
-    <tr>
-        <td>PSYC</td>
-        <td>57</td>
-    </tr>
-
-</table>
-
-<h1 id="which-instructor-s-course-has-the-highest-enrollment-by-zhilli">Which instructor&apos;s course has the highest enrollment? By Zhilli</h1>
-<p><pre>
-<span class="keyword">var</span> <span class="keyword">list</span> = _.map(data, <span class="keyword">function</span>(course){
-  <span class="keyword">var</span> instructors=course[<span class="string">&apos;Instructors&apos;</span>]
-  <span class="keyword">var</span> enroll=course[<span class="string">&apos;N&apos;</span>][<span class="string">&apos;ENROLL&apos;</span>]
-  <span class="keyword">var</span> courseName=course[<span class="string">&apos;CourseTitle&apos;</span>]
-  <span class="keyword">return</span> _.map(instructors, <span class="keyword">function</span>(instructor){
-  <span class="keyword">return</span> {<span class="string">&quot;instructor&quot;</span>: instructor[<span class="string">&apos;name&apos;</span>], <span class="string">&quot;courseTitle&quot;</span>: courseName, <span class="string">&quot;enrollment&quot;</span>: enroll}
-  })
-})
-
-<span class="keyword">var</span> maxGroups= _.max(_.flatten(<span class="keyword">list</span>), <span class="keyword">function</span>(course){
- <span class="keyword">return</span> course[<span class="string">&apos;enrollment&apos;</span>]
-})
-<span class="keyword">return</span> maxGroups
-</pre></p>
-<p>The professor is GRAVES, PHILIP E, the course title is Principles of Microeconomics.</p>
-<h1 id="which-department-has-the-highest-enrollment-by-tristan">Which department has the highest enrollment? By Tristan</h1>
-<p><pre>
-
-<span class="keyword">var</span> groups = _.groupBy(data,<span class="keyword">function</span>(n){
-    <span class="keyword">return</span> n[<span class="string">&apos;Subject&apos;</span>]
-})
-
-<span class="keyword">var</span> courseEnroll = _.mapValues(groups, <span class="keyword">function</span>(a){
-    <span class="keyword">return</span> _.map(a,<span class="keyword">function</span>(b){
-        <span class="keyword">return</span> b[<span class="string">&apos;N&apos;</span>][<span class="string">&apos;ENROLL&apos;</span>]
-    })
-})
-
-<span class="keyword">var</span> enroll = _.mapValues(courseEnroll, <span class="keyword">function</span>(n){
-    <span class="keyword">return</span> _.sum(n)
-})
-
-<span class="keyword">return</span> _.pick(enroll,<span class="keyword">function</span>(number){
-    <span class="keyword">return</span> number == _.max(enroll)
-})
-
-</pre></p>
-<table>
-
-    <tr>
-        <td>MATH</td>
-        <td>8725</td>
-    </tr>
-
-</table>
-
-
-
-<h1 id="what-instructors-has-the-highest-rating-by-andrew">What instructors has the highest rating? By Andrew</h1>
-<p><pre>
-
-<span class="keyword">var</span> <span class="keyword">list</span> = _.map(data, <span class="keyword">function</span>(course){
-  <span class="keyword">var</span> instructors=course[<span class="string">&apos;Instructors&apos;</span>]
-  <span class="keyword">var</span> enroll=course[<span class="string">&apos;AvgInstructor&apos;</span>]
-  <span class="keyword">return</span> _.map(instructors, <span class="keyword">function</span>(instructor){
-  <span class="keyword">return</span> {<span class="string">&quot;instructor&quot;</span>: instructor[<span class="string">&apos;name&apos;</span>], <span class="string">&quot;rating&quot;</span>: enroll}
-  })
-})
-
-<span class="keyword">var</span> maxGroups= _.max(_.flatten(<span class="keyword">list</span>), <span class="keyword">function</span>(course){
- <span class="keyword">return</span> course[<span class="string">&apos;rating&apos;</span>]
-})
-<span class="keyword">return</span> maxGroups
-
-</pre></p>
-<table>
-
-    <tr>
-        <td>instructor</td>
-        <td>HOBBS, STEVEN L</td>
-    </tr>
-
-    <tr>
-        <td>rating</td>
-        <td>6</td>
-    </tr>
-
-</table>
-
-
-
-
+                        <h1 id="week-4-learning-challenges">Week 4 Learning Challenges</h1>
+<p>This week&apos;s learning challenge has two components.</p>
+<ul>
+<li>Team - FCQ Report (using Lodash)</li>
+<li>Individual - FCQ Viz (using Tableau)</li>
+</ul>
 
                     
                     </section>
@@ -841,8 +709,10 @@ the following questions. Each member on our team is reponsible for one question.
         </div>
 
         
-        <a href="../../hackathons/fcq/warmup.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page: Warmup"><i class="fa fa-angle-left"></i></a>
+        <a href="../../learning/week3/lodash-groupby.html" class="navigation navigation-prev " aria-label="Previous page: Lodash GroupBy"><i class="fa fa-angle-left"></i></a>
         
+        
+        <a href="../../learning/week4/report.html" class="navigation navigation-next " aria-label="Next page: FCQ Report"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>
