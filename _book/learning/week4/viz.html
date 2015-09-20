@@ -5,7 +5,7 @@
         <!-- head:start -->
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <title>Report | book</title>
+        <title>FCQ Viz | book</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 2.2.0">
@@ -37,8 +37,10 @@
         
     
     
+    <link rel="next" href="../../hackathons/index.html" />
     
-    <link rel="prev" href="../../hackathons/fcq/warmup.html" />
+    
+    <link rel="prev" href="../../learning/week4/report.html" />
     
 
         <!-- head:end -->
@@ -46,7 +48,7 @@
     <body>
         <!-- body:start -->
         
-    <div class="book" data-level="2.3.2" data-basepath="../.." data-revision="Sun Sep 20 2015 17:03:52 GMT-0600 (MDT)">
+    <div class="book" data-level="1.5.2" data-basepath="../.." data-revision="Sun Sep 20 2015 17:03:52 GMT-0600 (MDT)">
     
 
 <div class="book-summary">
@@ -357,7 +359,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.5.2" data-path="learning/week4/viz.html">
+        <li class="chapter active" data-level="1.5.2" data-path="learning/week4/viz.html">
             
                 
                     <a href="../../learning/week4/viz.html">
@@ -561,7 +563,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="2.3.2" data-path="hackathons/fcq/report.html">
+        <li class="chapter " data-level="2.3.2" data-path="hackathons/fcq/report.html">
             
                 
                     <a href="../../hackathons/fcq/report.html">
@@ -691,146 +693,35 @@
                 
                     <section class="normal" id="section-">
                     
-                        <p></p>
-<h1 id="report">Report</h1>
-<p>As a class, we brainstormed and came up with a long list of further questions we
-can ask based on the FCQ data. Out of these questions, our team chose to tackle on
-the following questions. Each member on our team is reponsible for one question.</p>
+                        <h1 id="visualization">Visualization</h1>
+<p>Using Tableau, create visualization for each question in the report. You will
+work on this independently just like last week.</p>
+<p>To include a Tableau visualization in your report, take a screenshot, save it as an image,
+put it in the <code>learning/week2</code> folder, and replace <code>![screenshot](screenshot.png)</code>  with
+your own image. Please makes sure your screenshot includes the <em>entire</em> Tableau interface
+including the controls, widgets ...etc.</p>
+<h1 id="import">Import</h1>
+<p>Data: <a href="https://github.com/bigdatahci2015/book/blob/master/hackathons/fcq/fcq.clean.json" target="_blank">fcq.clean.json</a></p>
+<p>(a copy of this file is in your book repository already in the directory <code>hackathons/fcq</code>)</p>
+<p>This dataset is provided to you in the JSON format. Your first task is to figure out
+how to transform this JSON file into a format that can be fed into Tableau. As
+a junior and senior, you are expected to be able to look around the Internet
+to problem solve.</p>
 <h1 id="how-many-courses-in-iphy-that-have-4-credits-hours">How many courses in IPHY that have 4 credits hours ?</h1>
-<p><pre>
-<span class="keyword">var</span> course = _.filter(data,<span class="keyword">function</span>(n){
-    <span class="keyword">return</span> n[<span class="string">&apos;CrsPBADept&apos;</span>] == <span class="string">&apos;IPHY&apos;</span>
-})
-<span class="keyword">var</span> hour = _.filter(course,<span class="keyword">function</span>(d){
-    <span class="keyword">return</span> d[<span class="string">&apos;Hours&apos;</span>] == <span class="number">4</span>
-})
-
-<span class="keyword">return</span> _.size(hour)
-</pre></p>
-<p>They are 9 courses in IPHY that have 4 credits hour.</p>
+<p><img src="IPHY.png" alt="screenshot"></p>
+<p>For this question, I used side by side circle view to display the total number of IPHY&apos;s courses that have 4 credits hour. The result is shown by the number of circle.</p>
 <h1 id="what-departments-offer-the-most-4000-level-classess-by-brian">What departments offer the most 4000 level classess? By Brian</h1>
-<p><pre>
-<span class="keyword">var</span> group = _.groupBy(data,<span class="keyword">function</span>(college){
-    <span class="keyword">return</span> college[<span class="string">&apos;Subject&apos;</span>]
-})
-
-<span class="keyword">var</span> courseLevels = _.mapValues(group,<span class="keyword">function</span>(a){
-    <span class="keyword">return</span> _.map(a,<span class="keyword">function</span>(b){
-        <span class="keyword">return</span> b[<span class="string">&apos;Course&apos;</span>]
-    })	
-})
-<span class="keyword">var</span> count = <span class="number">0</span>
-<span class="keyword">var</span> levelCount = _.mapValues(courseLevels,<span class="keyword">function</span>(level){
-    count = <span class="number">0</span>
-    <span class="keyword">return</span> _.map(level,<span class="keyword">function</span>(n){
-        <span class="keyword">if</span>(n &gt;= <span class="number">4000</span> &amp;&amp; n &lt; <span class="number">5000</span>){
-        count++
-    }
-    <span class="keyword">return</span> count
-    })
-})
-
-<span class="keyword">var</span> result = _.mapValues(levelCount,<span class="keyword">function</span>(n){
-    <span class="keyword">return</span> _.max(n)
-})
-<span class="keyword">return</span> _.pick(result,<span class="keyword">function</span>(number){
-    <span class="keyword">return</span> number == _.max(result)
-})
-
-</pre></p>
-<table>
-
-    <tr>
-        <td>PSYC</td>
-        <td>57</td>
-    </tr>
-
-</table>
-
+<p><img src="4000Lcourse.png" alt="screenshot"></p>
+<p>For this question, I used treemaps to display the result. The treemaps will display the result by showing the box with the darkest green. The result is shown on the top left corner with the darkest color.</p>
 <h1 id="which-instructor-s-course-has-the-highest-enrollment-by-zhilli">Which instructor&apos;s course has the highest enrollment? By Zhilli</h1>
-<p><pre>
-<span class="keyword">var</span> <span class="keyword">list</span> = _.map(data, <span class="keyword">function</span>(course){
-  <span class="keyword">var</span> instructors=course[<span class="string">&apos;Instructors&apos;</span>]
-  <span class="keyword">var</span> enroll=course[<span class="string">&apos;N&apos;</span>][<span class="string">&apos;ENROLL&apos;</span>]
-  <span class="keyword">var</span> courseName=course[<span class="string">&apos;CourseTitle&apos;</span>]
-  <span class="keyword">return</span> _.map(instructors, <span class="keyword">function</span>(instructor){
-  <span class="keyword">return</span> {<span class="string">&quot;instructor&quot;</span>: instructor[<span class="string">&apos;name&apos;</span>], <span class="string">&quot;courseTitle&quot;</span>: courseName, <span class="string">&quot;enrollment&quot;</span>: enroll}
-  })
-})
-
-<span class="keyword">var</span> maxGroups= _.max(_.flatten(<span class="keyword">list</span>), <span class="keyword">function</span>(course){
- <span class="keyword">return</span> course[<span class="string">&apos;enrollment&apos;</span>]
-})
-<span class="keyword">return</span> maxGroups
-</pre></p>
-<p>The professor is GRAVES, PHILIP E, the course title is Principles of Microeconomics.</p>
+<p><img src="instructor-highestenroll.png" alt="screenshot"></p>
+<p>For this question, I used bar chart to display the instructor&apos;s course with the highest enrollment. The result is shown with the longest bar, which has 491 enrollments.</p>
 <h1 id="which-department-has-the-highest-enrollment-by-tristan">Which department has the highest enrollment? By Tristan</h1>
-<p><pre>
-
-<span class="keyword">var</span> groups = _.groupBy(data,<span class="keyword">function</span>(n){
-    <span class="keyword">return</span> n[<span class="string">&apos;Subject&apos;</span>]
-})
-
-<span class="keyword">var</span> courseEnroll = _.mapValues(groups, <span class="keyword">function</span>(a){
-    <span class="keyword">return</span> _.map(a,<span class="keyword">function</span>(b){
-        <span class="keyword">return</span> b[<span class="string">&apos;N&apos;</span>][<span class="string">&apos;ENROLL&apos;</span>]
-    })
-})
-
-<span class="keyword">var</span> enroll = _.mapValues(courseEnroll, <span class="keyword">function</span>(n){
-    <span class="keyword">return</span> _.sum(n)
-})
-
-<span class="keyword">return</span> _.pick(enroll,<span class="keyword">function</span>(number){
-    <span class="keyword">return</span> number == _.max(enroll)
-})
-
-</pre></p>
-<table>
-
-    <tr>
-        <td>MATH</td>
-        <td>8725</td>
-    </tr>
-
-</table>
-
-
-
+<p><img src="subjecthighestenroll.png" alt="screenshot"></p>
+<p>For this question, I used treemaps to display department with the highest enrollment. From the graph above, the department with the highest enrollment is marked with the color dark green. </p>
 <h1 id="what-instructors-has-the-highest-rating-by-andrew">What instructors has the highest rating? By Andrew</h1>
-<p><pre>
-
-<span class="keyword">var</span> <span class="keyword">list</span> = _.map(data, <span class="keyword">function</span>(course){
-  <span class="keyword">var</span> instructors=course[<span class="string">&apos;Instructors&apos;</span>]
-  <span class="keyword">var</span> enroll=course[<span class="string">&apos;AvgInstructor&apos;</span>]
-  <span class="keyword">return</span> _.map(instructors, <span class="keyword">function</span>(instructor){
-  <span class="keyword">return</span> {<span class="string">&quot;instructor&quot;</span>: instructor[<span class="string">&apos;name&apos;</span>], <span class="string">&quot;rating&quot;</span>: enroll}
-  })
-})
-
-<span class="keyword">var</span> maxGroups= _.max(_.flatten(<span class="keyword">list</span>), <span class="keyword">function</span>(course){
- <span class="keyword">return</span> course[<span class="string">&apos;rating&apos;</span>]
-})
-<span class="keyword">return</span> maxGroups
-
-</pre></p>
-<table>
-
-    <tr>
-        <td>instructor</td>
-        <td>HOBBS, STEVEN L</td>
-    </tr>
-
-    <tr>
-        <td>rating</td>
-        <td>6</td>
-    </tr>
-
-</table>
-
-
-
-
+<p><img src="instructor-rating.png" alt="screenshot"></p>
+<p>I used a barchart to display the highest rating for instructor. The result can be seen from chart with long bar. In this visualization we have many instructors with the highest rating. However, in our report we just pick one which is STEVEN L. </p>
 
                     
                     </section>
@@ -841,8 +732,10 @@ the following questions. Each member on our team is reponsible for one question.
         </div>
 
         
-        <a href="../../hackathons/fcq/warmup.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page: Warmup"><i class="fa fa-angle-left"></i></a>
+        <a href="../../learning/week4/report.html" class="navigation navigation-prev " aria-label="Previous page: FCQ Report"><i class="fa fa-angle-left"></i></a>
         
+        
+        <a href="../../hackathons/index.html" class="navigation navigation-next " aria-label="Next page: Hackathons"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>
