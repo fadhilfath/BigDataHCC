@@ -29,6 +29,14 @@
         
     
         
+        <link rel="stylesheet" href="../../gitbook/plugins/gitbook-plugin-bigdata/jquery.jsonview.css">
+        
+    
+        
+        <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.8.0/styles/default.min.css">
+        
+    
+        
         <link rel="stylesheet" href="../../gitbook/plugins/gitbook-plugin-toggle-chapters/toggle.css">
         
     
@@ -48,7 +56,7 @@
     <body>
         <!-- body:start -->
         
-    <div class="book" data-level="2.3.1" data-basepath="../.." data-revision="Sun Sep 20 2015 17:03:52 GMT-0600 (MDT)">
+    <div class="book" data-level="2.3.1" data-basepath="../.." data-revision="Thu Sep 24 2015 18:53:14 GMT-0600 (MDT)">
     
 
 <div class="book-summary">
@@ -379,6 +387,87 @@
             
         </li>
     
+        <li class="chapter " data-level="1.6" data-path="learning/week5/index.html">
+            
+                
+                    <a href="../../learning/week5/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.6.</b>
+                        
+                        Week 5
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.6.1" data-path="learning/week5/birdstrike-report.html">
+            
+                
+                    <a href="../../learning/week5/birdstrike-report.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.6.1.</b>
+                        
+                        Birdstrike Report
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.2" data-path="learning/week5/viz-steps.html">
+            
+                
+                    <a href="../../learning/week5/viz-steps.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.6.2.</b>
+                        
+                        Viz Intro
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.3" data-path="learning/week5/viz-drills.html">
+            
+                
+                    <a href="../../learning/week5/viz-drills.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.6.3.</b>
+                        
+                        Viz Drills
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.4" data-path="learning/week5/viz-pokemon.html">
+            
+                
+                    <a href="../../learning/week5/viz-pokemon.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.6.4.</b>
+                        
+                        Viz Pokemon
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
 
             </ul>
             
@@ -583,6 +672,42 @@
             
         </li>
     
+        <li class="chapter " data-level="2.4" data-path="hackathons/birdstrikes/index.html">
+            
+                
+                    <a href="../../hackathons/birdstrikes/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.4.</b>
+                        
+                        Birdstrikes
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.4.1" data-path="hackathons/birdstrikes/report.html">
+            
+                
+                    <a href="../../hackathons/birdstrikes/report.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.4.1.</b>
+                        
+                        Report
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
 
             </ul>
             
@@ -697,36 +822,29 @@
 <h1 id="warmup">Warmup</h1>
 <p>Next, complete the following warmup exercises as a team.</p>
 <h2 id="how-many-unique-subject-codes">How many unique subject codes?</h2>
-<p><pre>
-<span class="comment">// TODO: replace with code that computes the actual result</span>
-<span class="keyword">var</span> subject = _.map(data,<span class="keyword">function</span>(d){
-    <span class="keyword">return</span> d[<span class="string">&apos;Subject&apos;</span>]
+<p><pre><code>// TODO: replace with code that computes the actual result
+var subject = _.map(data,function(d){
+    return d[&apos;Subject&apos;]
 })
 
-<span class="keyword">return</span> _.size(_.uniq(subject))
-    
-</pre></p>
+return _.size(_.uniq(subject))</code></pre></p>
 <p>They are 113 unique subject codes.</p>
 <h2 id="how-many-computer-science-csci-courses">How many computer science (CSCI) courses?</h2>
-<p><pre>
-<span class="comment">// TODO: replace with code that computes the actual result</span>
-<span class="keyword">var</span> cs = _.filter(data,<span class="keyword">function</span>(d){
-    <span class="keyword">return</span> d[<span class="string">&apos;CrsPBADept&apos;</span>] == <span class="string">&apos;CSCI&apos;</span>
+<p><pre><code>// TODO: replace with code that computes the actual result
+var cs = _.filter(data,function(d){
+    return d[&apos;CrsPBADept&apos;] == &apos;CSCI&apos;
 })
-<span class="keyword">return</span> _.size(cs)
-</pre></p>
+return _.size(cs)</code></pre></p>
 <p>They are 63 computer science courses.</p>
 <h2 id="what-is-the-distribution-of-the-courses-across-subject-codes">What is the distribution of the courses across subject codes?</h2>
-<p><pre>
-<span class="comment">// TODO: replace with code that computes the actual result</span>
+<p><pre><code>// TODO: replace with code that computes the actual result
 
-<span class="keyword">var</span> subject = _.groupBy(data,<span class="string">&apos;Subject&apos;</span>)
+var subject = _.groupBy(data,&apos;Subject&apos;)
 
-<span class="keyword">var</span> result = _.mapValues(subject,<span class="keyword">function</span>(n){
-    <span class="keyword">return</span> n.length
+var result = _.mapValues(subject,function(n){
+    return n.length
 })
-<span class="keyword">return</span> result
-</pre></p>
+return result</code></pre></p>
 <table>
 
     <tr>
@@ -1297,25 +1415,20 @@
 </table>
 
 <h2 id="what-subset-of-these-subject-codes-have-more-than-100-courses">What subset of these subject codes have more than 100 courses?</h2>
-<p><pre>
-<span class="comment">// TODO: replace with code that computes the actual result</span>
-<span class="keyword">var</span> grps = _.groupBy(data, <span class="string">&apos;Subject&apos;</span>)
-<span class="comment">/*var ret = _.pick(_.mapValues(grps, function(d){
+<p><pre><code>// TODO: replace with code that computes the actual result
+var grps = _.groupBy(data, &apos;Subject&apos;)
+/*var ret = _.pick(_.mapValues(grps, function(d){
     return d.length
 }), function(x){
     return x &gt; 100
-})*/</span>
-<span class="keyword">var</span> result = _.mapValues(grps,<span class="keyword">function</span>(n){
-    <span class="keyword">return</span> n.length 
+})*/
+var result = _.mapValues(grps,function(n){
+    return n.length 
 })
 
-<span class="keyword">return</span> _.pick(result,<span class="keyword">function</span>(n){
-    <span class="keyword">return</span> n &gt; <span class="number">100</span>
-})
-
-
-
-</pre></p>
+return _.pick(result,function(n){
+    return n &gt; 100
+})</code></pre></p>
 <table>
 
     <tr>
@@ -1391,29 +1504,26 @@
 </table>
 
 <h2 id="what-subset-of-these-subject-codes-have-more-than-5000-total-enrollments">What subset of these subject codes have more than 5000 total enrollments?</h2>
-<p><pre>
-<span class="comment">// TODO: replace with code that computes the actual result</span>
-<span class="comment">//return {&quot;IPHY&quot;: 5507,&quot;MATH&quot;: 8725,&quot;PHIL&quot;: 5672,&quot;PHYS&quot;: 8099,&quot;PSCI&quot;: 5491}</span>
+<p><pre><code>// TODO: replace with code that computes the actual result
+//return {&quot;IPHY&quot;: 5507,&quot;MATH&quot;: 8725,&quot;PHIL&quot;: 5672,&quot;PHYS&quot;: 8099,&quot;PSCI&quot;: 5491}
 
-<span class="keyword">var</span> groups = _.groupBy(data,<span class="keyword">function</span>(n){
-    <span class="keyword">return</span> n[<span class="string">&apos;Subject&apos;</span>]
+var groups = _.groupBy(data,function(n){
+    return n[&apos;Subject&apos;]
 })
 
-<span class="keyword">var</span> enroll = _.mapValues(groups, <span class="keyword">function</span>(a){
-    <span class="keyword">return</span> _.map(a,<span class="keyword">function</span>(b){
-        <span class="keyword">return</span> b[<span class="string">&apos;N&apos;</span>][<span class="string">&apos;ENROLL&apos;</span>]
+var enroll = _.mapValues(groups, function(a){
+    return _.map(a,function(b){
+        return b[&apos;N&apos;][&apos;ENROLL&apos;]
     })
 })
 
-<span class="keyword">var</span> total = _.mapValues(enroll, <span class="keyword">function</span>(n){
-    <span class="keyword">return</span> _.sum(n)
+var total = _.mapValues(enroll, function(n){
+    return _.sum(n)
 })
 
-<span class="keyword">return</span> _.pick(total,<span class="keyword">function</span>(tot){
-    <span class="keyword">return</span> tot &gt; <span class="number">5000</span>
-})
-
-</pre></p>
+return _.pick(total,function(tot){
+    return tot &gt; 5000
+})</code></pre></p>
 <table>
 
     <tr>
@@ -1469,20 +1579,18 @@
 </table>
 
 <h2 id="what-are-the-course-numbers-of-the-courses-tom-pei-hsiu-yeh-taught">What are the course numbers of the courses Tom (PEI HSIU) Yeh taught?</h2>
-<p><pre>
-<span class="comment">// TODO: replace with code that computes the actual result</span>
-<span class="comment">//return [&apos;4830&apos;,&apos;4830&apos;]</span>
+<p><pre><code>// TODO: replace with code that computes the actual result
+//return [&apos;4830&apos;,&apos;4830&apos;]
 
-<span class="keyword">var</span> courses= _.filter(data, <span class="keyword">function</span>(course){
-  <span class="keyword">var</span> instructor= _.filter(course[<span class="string">&apos;Instructors&apos;</span>], <span class="keyword">function</span>(instructor){
-    <span class="keyword">return</span> instructor[<span class="string">&apos;name&apos;</span>] == <span class="string">&apos;YEH, PEI HSIU&apos;</span>
+var courses= _.filter(data, function(course){
+  var instructor= _.filter(course[&apos;Instructors&apos;], function(instructor){
+    return instructor[&apos;name&apos;] == &apos;YEH, PEI HSIU&apos;
   })
-  <span class="keyword">return</span> _.size(instructor) &gt; <span class="number">0</span>
+  return _.size(instructor) &gt; 0
 })
-<span class="keyword">return</span> _.map(courses, <span class="keyword">function</span>(course){
-  <span class="keyword">return</span> course[<span class="string">&apos;Course&apos;</span>]
-})
-</pre></p>
+return _.map(courses, function(course){
+  return course[&apos;Course&apos;]
+})</code></pre></p>
 <p>They are 4830,4830.</p>
 
                     
@@ -1504,6 +1612,18 @@
 
         
 <script src="../../gitbook/app.js"></script>
+
+    
+    <script src="../../gitbook/plugins/gitbook-plugin-bigdata/bigdata.js"></script>
+    
+
+    
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.8.0/highlight.min.js"></script>
+    
+
+    
+    <script src="../../gitbook/plugins/gitbook-plugin-bigdata/jquery.jsonview.js"></script>
+    
 
     
     <script src="../../gitbook/plugins/gitbook-plugin-toggle-chapters/toggle.js"></script>

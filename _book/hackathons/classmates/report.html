@@ -29,6 +29,14 @@
         
     
         
+        <link rel="stylesheet" href="../../gitbook/plugins/gitbook-plugin-bigdata/jquery.jsonview.css">
+        
+    
+        
+        <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.8.0/styles/default.min.css">
+        
+    
+        
         <link rel="stylesheet" href="../../gitbook/plugins/gitbook-plugin-toggle-chapters/toggle.css">
         
     
@@ -48,7 +56,7 @@
     <body>
         <!-- body:start -->
         
-    <div class="book" data-level="2.2.4" data-basepath="../.." data-revision="Sun Sep 20 2015 17:03:52 GMT-0600 (MDT)">
+    <div class="book" data-level="2.2.4" data-basepath="../.." data-revision="Thu Sep 24 2015 18:53:14 GMT-0600 (MDT)">
     
 
 <div class="book-summary">
@@ -379,6 +387,87 @@
             
         </li>
     
+        <li class="chapter " data-level="1.6" data-path="learning/week5/index.html">
+            
+                
+                    <a href="../../learning/week5/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.6.</b>
+                        
+                        Week 5
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.6.1" data-path="learning/week5/birdstrike-report.html">
+            
+                
+                    <a href="../../learning/week5/birdstrike-report.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.6.1.</b>
+                        
+                        Birdstrike Report
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.2" data-path="learning/week5/viz-steps.html">
+            
+                
+                    <a href="../../learning/week5/viz-steps.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.6.2.</b>
+                        
+                        Viz Intro
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.3" data-path="learning/week5/viz-drills.html">
+            
+                
+                    <a href="../../learning/week5/viz-drills.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.6.3.</b>
+                        
+                        Viz Drills
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.4" data-path="learning/week5/viz-pokemon.html">
+            
+                
+                    <a href="../../learning/week5/viz-pokemon.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.6.4.</b>
+                        
+                        Viz Pokemon
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
 
             </ul>
             
@@ -583,6 +672,42 @@
             
         </li>
     
+        <li class="chapter " data-level="2.4" data-path="hackathons/birdstrikes/index.html">
+            
+                
+                    <a href="../../hackathons/birdstrikes/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.4.</b>
+                        
+                        Birdstrikes
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.4.1" data-path="hackathons/birdstrikes/report.html">
+            
+                
+                    <a href="../../hackathons/birdstrikes/report.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.4.1.</b>
+                        
+                        Report
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
 
             </ul>
             
@@ -698,60 +823,48 @@
 on the &quot;self-introduction&quot; data. Out of these questions, our team chose to tackle on
 the following:</p>
 <h1 id="how-many-students-are-in-computer-science">How many students are in Computer Science?</h1>
-<p><pre>
-<span class="keyword">var</span> text = data.comments
-<span class="keyword">var</span> major = _.filter(_.pluck(text,<span class="string">&apos;body&apos;</span>),<span class="keyword">function</span>(n){
-    <span class="keyword">return</span> _.includes(n,<span class="string">&quot;Computer Science&quot;</span>) || _.includes(n,<span class="string">&quot;CS&quot;</span>)
+<p><pre><code>var text = data.comments
+var major = _.filter(_.pluck(text,&apos;body&apos;),function(n){
+	return _.includes(n,&quot;Computer Science&quot;) || _.includes(n,&quot;CS&quot;)
 })
 
-<span class="keyword">return</span> _.size(major)
+return _.size(major)
 
-<span class="keyword">return</span> <span class="string">&quot;[answer]&quot;</span>
-</pre></p>
+return &quot;[answer]&quot;</code></pre></p>
 <p>The answer is 20.</p>
 <h1 id="how-many-student-s-name-starts-with-a">How many student&apos;s name starts with &apos;A&apos;?</h1>
-<p><pre>
-
-
-<span class="keyword">var</span> <span class="keyword">list</span>=_.filter(_.pluck(data.comments, <span class="string">&apos;body&apos;</span>), <span class="keyword">function</span>(text){ 
-    <span class="keyword">var</span> a=text.split(<span class="string">&quot;\r\n&quot;</span>)[<span class="number">0</span>] 
-    <span class="keyword">var</span> name=_.last(text.split(<span class="string">&quot;Name:&quot;</span>)) 
-    <span class="keyword">return</span> name.charAt(<span class="number">1</span>) == <span class="string">&apos;A&apos;</span> 
+<p><pre><code>var list=_.filter(_.pluck(data.comments, &apos;body&apos;), function(text){ 
+	var a=text.split(&quot;\r\n&quot;)[0] 
+	var name=_.last(text.split(&quot;Name:&quot;)) 
+	return name.charAt(1) == &apos;A&apos; 
 }) 
 
-<span class="keyword">return</span> _.size(<span class="keyword">list</span>)
-
-</pre></p>
+return _.size(list)</code></pre></p>
 <p>The answer is 4</p>
 <h1 id="how-many-students-are-not-in-computer-science-major">How many students are not in Computer Science major?</h1>
-<p><pre>
-
-<span class="keyword">var</span> text = data.comments
-<span class="keyword">var</span> major = _.filter(_.pluck(text,<span class="string">&apos;body&apos;</span>),<span class="keyword">function</span>(n){
-    <span class="keyword">return</span> _.includes(n,<span class="string">&quot;Computer Science&quot;</span>) || _.includes(n,<span class="string">&quot;CS&quot;</span>)
+<p><pre><code>var text = data.comments
+var major = _.filter(_.pluck(text,&apos;body&apos;),function(n){
+	return _.includes(n,&quot;Computer Science&quot;) || _.includes(n,&quot;CS&quot;)
 })
 
-<span class="keyword">return</span> data.comments.length - _.size(major)
+return data.comments.length - _.size(major)
 
 
-<span class="keyword">return</span> <span class="string">&quot;[answer]&quot;</span>
-</pre>
+return &quot;[answer]&quot;</code></pre>
 The answer is 6</p>
 <h1 id="what-is-the-id-number-of-zhilli-zhya215">What is the ID number of Zhilli(zhya215)?</h1>
-<p><pre>
-<span class="keyword">var</span> text = data.comments
-<span class="keyword">var</span> a = _.filter(text,<span class="keyword">function</span>(n){
-    <span class="keyword">return</span> _.includes(n.user,<span class="string">&quot;zhya215&quot;</span>)
+<p><pre><code>var text = data.comments
+var a = _.filter(text,function(n){
+	return _.includes(n.user,&quot;zhya215&quot;)
 })
 
-<span class="keyword">var</span> y = _.pluck(a,<span class="string">&apos;user.id&apos;</span>)
+var y = _.pluck(a,&apos;user.id&apos;)
 
-<span class="keyword">return</span> y
+return y
 
 
 
-<span class="keyword">return</span> <span class="string">&quot;[answer]&quot;</span>
-</pre></p>
+return &quot;[answer]&quot;</code></pre></p>
 <p>The answer is 5596113</p>
 
                     
@@ -773,6 +886,18 @@ The answer is 6</p>
 
         
 <script src="../../gitbook/app.js"></script>
+
+    
+    <script src="../../gitbook/plugins/gitbook-plugin-bigdata/bigdata.js"></script>
+    
+
+    
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.8.0/highlight.min.js"></script>
+    
+
+    
+    <script src="../../gitbook/plugins/gitbook-plugin-bigdata/jquery.jsonview.js"></script>
+    
 
     
     <script src="../../gitbook/plugins/gitbook-plugin-toggle-chapters/toggle.js"></script>

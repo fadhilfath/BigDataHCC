@@ -29,6 +29,14 @@
         
     
         
+        <link rel="stylesheet" href="../../gitbook/plugins/gitbook-plugin-bigdata/jquery.jsonview.css">
+        
+    
+        
+        <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.8.0/styles/default.min.css">
+        
+    
+        
         <link rel="stylesheet" href="../../gitbook/plugins/gitbook-plugin-toggle-chapters/toggle.css">
         
     
@@ -48,7 +56,7 @@
     <body>
         <!-- body:start -->
         
-    <div class="book" data-level="1.5.1" data-basepath="../.." data-revision="Sun Sep 20 2015 17:03:52 GMT-0600 (MDT)">
+    <div class="book" data-level="1.5.1" data-basepath="../.." data-revision="Thu Sep 24 2015 18:53:14 GMT-0600 (MDT)">
     
 
 <div class="book-summary">
@@ -379,6 +387,87 @@
             
         </li>
     
+        <li class="chapter " data-level="1.6" data-path="learning/week5/index.html">
+            
+                
+                    <a href="../../learning/week5/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.6.</b>
+                        
+                        Week 5
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.6.1" data-path="learning/week5/birdstrike-report.html">
+            
+                
+                    <a href="../../learning/week5/birdstrike-report.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.6.1.</b>
+                        
+                        Birdstrike Report
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.2" data-path="learning/week5/viz-steps.html">
+            
+                
+                    <a href="../../learning/week5/viz-steps.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.6.2.</b>
+                        
+                        Viz Intro
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.3" data-path="learning/week5/viz-drills.html">
+            
+                
+                    <a href="../../learning/week5/viz-drills.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.6.3.</b>
+                        
+                        Viz Drills
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.4" data-path="learning/week5/viz-pokemon.html">
+            
+                
+                    <a href="../../learning/week5/viz-pokemon.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.6.4.</b>
+                        
+                        Viz Pokemon
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
 
             </ul>
             
@@ -583,6 +672,42 @@
             
         </li>
     
+        <li class="chapter " data-level="2.4" data-path="hackathons/birdstrikes/index.html">
+            
+                
+                    <a href="../../hackathons/birdstrikes/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.4.</b>
+                        
+                        Birdstrikes
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.4.1" data-path="hackathons/birdstrikes/report.html">
+            
+                
+                    <a href="../../hackathons/birdstrikes/report.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.4.1.</b>
+                        
+                        Report
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
 
             </ul>
             
@@ -706,47 +831,42 @@ will be able to independently reproduce these solutions when asked to do so.
 Coming up, we will incorporate variations of these questions into a future hackathon
  and you are expected to be capable of reproducing and adapting your solutions.</p>
 <h1 id="how-many-courses-in-iphy-that-have-4-credits-hours">How many courses in IPHY that have 4 credits hours ?</h1>
-<p><pre>
-<span class="keyword">var</span> course = _.filter(data,<span class="keyword">function</span>(n){
-    <span class="keyword">return</span> n[<span class="string">&apos;CrsPBADept&apos;</span>] == <span class="string">&apos;IPHY&apos;</span>
+<p><pre><code>var course = _.filter(data,function(n){
+	return n[&apos;CrsPBADept&apos;] == &apos;IPHY&apos;
 })
-<span class="keyword">var</span> hour = _.filter(course,<span class="keyword">function</span>(d){
-    <span class="keyword">return</span> d[<span class="string">&apos;Hours&apos;</span>] == <span class="number">4</span>
+var hour = _.filter(course,function(d){
+	return d[&apos;Hours&apos;] == 4
 })
 
-<span class="keyword">return</span> _.size(hour)
-</pre></p>
+return _.size(hour)</code></pre></p>
 <p>They are 9 courses in IPHY that have 4 credits hour.</p>
 <h1 id="what-departments-offer-the-most-4000-level-classess-by-brian">What departments offer the most 4000 level classess? By Brian</h1>
-<p><pre>
-<span class="keyword">var</span> group = _.groupBy(data,<span class="keyword">function</span>(college){
-    <span class="keyword">return</span> college[<span class="string">&apos;Subject&apos;</span>]
+<p><pre><code>var group = _.groupBy(data,function(college){
+	return college[&apos;Subject&apos;]
 })
 
-<span class="keyword">var</span> courseLevels = _.mapValues(group,<span class="keyword">function</span>(a){
-    <span class="keyword">return</span> _.map(a,<span class="keyword">function</span>(b){
-        <span class="keyword">return</span> b[<span class="string">&apos;Course&apos;</span>]
-    })	
+var courseLevels = _.mapValues(group,function(a){
+	return _.map(a,function(b){
+		return b[&apos;Course&apos;]
+	})	
 })
-<span class="keyword">var</span> count = <span class="number">0</span>
-<span class="keyword">var</span> levelCount = _.mapValues(courseLevels,<span class="keyword">function</span>(level){
-    count = <span class="number">0</span>
-    <span class="keyword">return</span> _.map(level,<span class="keyword">function</span>(n){
-        <span class="keyword">if</span>(n &gt;= <span class="number">4000</span> &amp;&amp; n &lt; <span class="number">5000</span>){
-        count++
-    }
-    <span class="keyword">return</span> count
-    })
-})
-
-<span class="keyword">var</span> result = _.mapValues(levelCount,<span class="keyword">function</span>(n){
-    <span class="keyword">return</span> _.max(n)
-})
-<span class="keyword">return</span> _.pick(result,<span class="keyword">function</span>(number){
-    <span class="keyword">return</span> number == _.max(result)
+var count = 0
+var levelCount = _.mapValues(courseLevels,function(level){
+	count = 0
+	return _.map(level,function(n){
+		if(n &gt;= 4000 &amp;&amp; n &lt; 5000){
+		count++
+	}
+	return count
+	})
 })
 
-</pre></p>
+var result = _.mapValues(levelCount,function(n){
+	return _.max(n)
+})
+return _.pick(result,function(number){
+	return number == _.max(result)
+})</code></pre></p>
 <table>
 
     <tr>
@@ -757,44 +877,38 @@ Coming up, we will incorporate variations of these questions into a future hacka
 </table>
 
 <h1 id="which-instructor-s-course-has-the-highest-enrollment-by-zhilli">Which instructor&apos;s course has the highest enrollment? By Zhilli</h1>
-<p><pre>
-<span class="keyword">var</span> <span class="keyword">list</span> = _.map(data, <span class="keyword">function</span>(course){
-  <span class="keyword">var</span> instructors=course[<span class="string">&apos;Instructors&apos;</span>]
-  <span class="keyword">var</span> enroll=course[<span class="string">&apos;N&apos;</span>][<span class="string">&apos;ENROLL&apos;</span>]
-  <span class="keyword">var</span> courseName=course[<span class="string">&apos;CourseTitle&apos;</span>]
-  <span class="keyword">return</span> _.map(instructors, <span class="keyword">function</span>(instructor){
-  <span class="keyword">return</span> {<span class="string">&quot;instructor&quot;</span>: instructor[<span class="string">&apos;name&apos;</span>], <span class="string">&quot;courseTitle&quot;</span>: courseName, <span class="string">&quot;enrollment&quot;</span>: enroll}
+<p><pre><code>var list = _.map(data, function(course){
+  var instructors=course[&apos;Instructors&apos;]
+  var enroll=course[&apos;N&apos;][&apos;ENROLL&apos;]
+  var courseName=course[&apos;CourseTitle&apos;]
+  return _.map(instructors, function(instructor){
+  return {&quot;instructor&quot;: instructor[&apos;name&apos;], &quot;courseTitle&quot;: courseName, &quot;enrollment&quot;: enroll}
   })
 })
 
-<span class="keyword">var</span> maxGroups= _.max(_.flatten(<span class="keyword">list</span>), <span class="keyword">function</span>(course){
- <span class="keyword">return</span> course[<span class="string">&apos;enrollment&apos;</span>]
+var maxGroups= _.max(_.flatten(list), function(course){
+ return course[&apos;enrollment&apos;]
 })
-<span class="keyword">return</span> maxGroups
-</pre></p>
+return maxGroups</code></pre></p>
 <p>The professor is GRAVES, PHILIP E, the course title is Principles of Microeconomics.</p>
 <h1 id="which-department-has-the-highest-enrollment-by-tristan">Which department has the highest enrollment? By Tristan</h1>
-<p><pre>
-
-<span class="keyword">var</span> groups = _.groupBy(data,<span class="keyword">function</span>(n){
-    <span class="keyword">return</span> n[<span class="string">&apos;Subject&apos;</span>]
+<p><pre><code>var groups = _.groupBy(data,function(n){
+    return n[&apos;Subject&apos;]
 })
 
-<span class="keyword">var</span> courseEnroll = _.mapValues(groups, <span class="keyword">function</span>(a){
-    <span class="keyword">return</span> _.map(a,<span class="keyword">function</span>(b){
-        <span class="keyword">return</span> b[<span class="string">&apos;N&apos;</span>][<span class="string">&apos;ENROLL&apos;</span>]
+var courseEnroll = _.mapValues(groups, function(a){
+    return _.map(a,function(b){
+        return b[&apos;N&apos;][&apos;ENROLL&apos;]
     })
 })
 
-<span class="keyword">var</span> enroll = _.mapValues(courseEnroll, <span class="keyword">function</span>(n){
-    <span class="keyword">return</span> _.sum(n)
+var enroll = _.mapValues(courseEnroll, function(n){
+    return _.sum(n)
 })
 
-<span class="keyword">return</span> _.pick(enroll,<span class="keyword">function</span>(number){
-    <span class="keyword">return</span> number == _.max(enroll)
-})
-
-</pre></p>
+return _.pick(enroll,function(number){
+    return number == _.max(enroll)
+})</code></pre></p>
 <table>
 
     <tr>
@@ -807,22 +921,18 @@ Coming up, we will incorporate variations of these questions into a future hacka
 
 
 <h1 id="what-instructors-has-the-highest-rating-by-andrew">What instructors has the highest rating? By Andrew</h1>
-<p><pre>
-
-<span class="keyword">var</span> <span class="keyword">list</span> = _.map(data, <span class="keyword">function</span>(course){
-  <span class="keyword">var</span> instructors=course[<span class="string">&apos;Instructors&apos;</span>]
-  <span class="keyword">var</span> enroll=course[<span class="string">&apos;AvgInstructor&apos;</span>]
-  <span class="keyword">return</span> _.map(instructors, <span class="keyword">function</span>(instructor){
-  <span class="keyword">return</span> {<span class="string">&quot;instructor&quot;</span>: instructor[<span class="string">&apos;name&apos;</span>], <span class="string">&quot;rating&quot;</span>: enroll}
+<p><pre><code>var list = _.map(data, function(course){
+  var instructors=course[&apos;Instructors&apos;]
+  var enroll=course[&apos;AvgInstructor&apos;]
+  return _.map(instructors, function(instructor){
+  return {&quot;instructor&quot;: instructor[&apos;name&apos;], &quot;rating&quot;: enroll}
   })
 })
 
-<span class="keyword">var</span> maxGroups= _.max(_.flatten(<span class="keyword">list</span>), <span class="keyword">function</span>(course){
- <span class="keyword">return</span> course[<span class="string">&apos;rating&apos;</span>]
+var maxGroups= _.max(_.flatten(list), function(course){
+ return course[&apos;rating&apos;]
 })
-<span class="keyword">return</span> maxGroups
-
-</pre></p>
+return maxGroups</code></pre></p>
 <table>
 
     <tr>
@@ -860,6 +970,18 @@ Coming up, we will incorporate variations of these questions into a future hacka
 
         
 <script src="../../gitbook/app.js"></script>
+
+    
+    <script src="../../gitbook/plugins/gitbook-plugin-bigdata/bigdata.js"></script>
+    
+
+    
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.8.0/highlight.min.js"></script>
+    
+
+    
+    <script src="../../gitbook/plugins/gitbook-plugin-bigdata/jquery.jsonview.js"></script>
+    
 
     
     <script src="../../gitbook/plugins/gitbook-plugin-toggle-chapters/toggle.js"></script>
