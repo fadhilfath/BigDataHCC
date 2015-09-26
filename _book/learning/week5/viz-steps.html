@@ -56,7 +56,7 @@
     <body>
         <!-- body:start -->
         
-    <div class="book" data-level="1.6.2" data-basepath="../.." data-revision="Thu Sep 24 2015 18:53:14 GMT-0600 (MDT)">
+    <div class="book" data-level="1.6.2" data-basepath="../.." data-revision="Fri Sep 25 2015 22:45:41 GMT-0600 (MDT)">
     
 
 <div class="book-summary">
@@ -850,7 +850,7 @@ content of the string can be accessed by <code>template.foo</code> in a code blo
 the attribute values we like to populate the template with. In this simplest
 example, there&apos;s only one attribute, <em>x</em>.</p>
 <p><pre><code>function computeX(d, i) {
-    return i * 20
+    return i * 20 
 }
 
 data.viz = _.map(data.countries, function(d, i){
@@ -950,12 +950,12 @@ task is to add code to complete each exercise.</p>
  {name: &apos;Indonesia&apos;, pop: 25281224}]</code></pre></p>
 <h3 id="step-2-define-mappers">Step 2: Define Mappers</h3>
 <p><pre><code>function computeX(d, i) {
-    return i * 20
+    return i * 20 + 10
 }
 
 function computeHeight(d, i){
     // TODO: fix this to return the correct height
-    return 10 + i * 50
+    return  d.pop / 10000000 + 100
 }
 
 data.viz = _.map(data.countries, function(d, i){
@@ -981,53 +981,53 @@ return result.join(&apos;\n&apos;)</code></pre></p>
 <p>The resulting svg tags are rendered as below</p>
 <div style="border:1px solid grey; padding:5px;"><svg height="500" width="800">
 
-<rect x="0" width="20" height="10" style="fill:rgb(0,0,255);stroke-width:3;stroke:rgb(0,0,0)"/>
+<rect x="10" width="20" height="239.3783836" style="fill:rgb(0,0,255);stroke-width:3;stroke:rgb(0,0,0)"/>
 
 
 
 
-<rect x="20" width="20" height="60" style="fill:rgb(0,0,255);stroke-width:3;stroke:rgb(0,0,0)"/>
+<rect x="30" width="20" height="226.7401849" style="fill:rgb(0,0,255);stroke-width:3;stroke:rgb(0,0,0)"/>
 
 
 
 
-<rect x="40" width="20" height="110" style="fill:rgb(0,0,255);stroke-width:3;stroke:rgb(0,0,0)"/>
+<rect x="50" width="20" height="132.25830059999998" style="fill:rgb(0,0,255);stroke-width:3;stroke:rgb(0,0,0)"/>
 
 
 
 
-<rect x="60" width="20" height="160" style="fill:rgb(0,0,255);stroke-width:3;stroke:rgb(0,0,0)"/>
+<rect x="70" width="20" height="102.5281224" style="fill:rgb(0,0,255);stroke-width:3;stroke:rgb(0,0,0)"/>
 
 </svg><pre><code>
 
 
-&lt;rect x=&quot;0&quot;
+&lt;rect x=&quot;10&quot;
      width=&quot;20&quot;
-     height=&quot;10&quot;
+     height=&quot;239.3783836&quot;
      style=&quot;fill:rgb(0,0,255);stroke-width:3;stroke:rgb(0,0,0)&quot; /&gt;
 
 
 
 
-&lt;rect x=&quot;20&quot;
+&lt;rect x=&quot;30&quot;
      width=&quot;20&quot;
-     height=&quot;60&quot;
+     height=&quot;226.7401849&quot;
      style=&quot;fill:rgb(0,0,255);stroke-width:3;stroke:rgb(0,0,0)&quot; /&gt;
 
 
 
 
-&lt;rect x=&quot;40&quot;
+&lt;rect x=&quot;50&quot;
      width=&quot;20&quot;
-     height=&quot;110&quot;
+     height=&quot;132.25830059999998&quot;
      style=&quot;fill:rgb(0,0,255);stroke-width:3;stroke:rgb(0,0,0)&quot; /&gt;
 
 
 
 
-&lt;rect x=&quot;60&quot;
+&lt;rect x=&quot;70&quot;
      width=&quot;20&quot;
-     height=&quot;160&quot;
+     height=&quot;102.5281224&quot;
      style=&quot;fill:rgb(0,0,255);stroke-width:3;stroke:rgb(0,0,0)&quot; /&gt;
 
 
@@ -1041,28 +1041,33 @@ return result.join(&apos;\n&apos;)</code></pre></p>
  {name: &apos;Indonesia&apos;, pop: 25281224}]</code></pre></p>
 <h3 id="step-2-define-mappers">Step 2: Define Mappers</h3>
 <p><pre><code>function computeX(d, i) {
-    return i * 20
+    return i * 90
 }
 
 function computeHeight(d, i){
     // TODO: fix this to return the correct height
-    return 10 + i * 50
+    return d.pop / 10000000 + 100
 }
 
 // TODO: add a new mapper function for width
+
+function computeWidth(d, i){
+    return (d.pop / 100000000)
+}
 
 data.viz = _.map(data.countries, function(d, i){
         // TODO: add a new attribute to each viz object
         return {
             x: computeX(d, i),
-            height: computeHeight(d, i)
+            height: computeHeight(d, i),
+            width: computeWidth(d,i)
         }    
     })</code></pre></p>
 <h3 id="step-3-template">Step 3: Template</h3>
 <p>(TODO: add template variables for width and height)
 </p><h4>template.foo</h4> <pre><code>&lt;rect x=&quot;${d.x}&quot;
-     width=&quot;20&quot;
-     height=&quot;20&quot;
+     width=&quot;${d.width}&quot;
+     height=&quot;${d.height}&quot;
      style=&quot;fill:rgb(0,0,255);stroke-width:3;stroke:rgb(0,0,0)&quot; /&gt;</code></pre><p></p>
 <h3 id="step-4-populate">Step 4: Populate</h3>
 <p><pre><code>// compile the template.foo into a template function
@@ -1076,53 +1081,53 @@ return result.join(&apos;\n&apos;)</code></pre></p>
 <p>The resulting svg tags are rendered as below</p>
 <div style="border:1px solid grey; padding:5px;"><svg height="500" width="800">
 
-<rect x="0" width="20" height="20" style="fill:rgb(0,0,255);stroke-width:3;stroke:rgb(0,0,0)"/>
+<rect x="0" width="13.93783836" height="239.3783836" style="fill:rgb(0,0,255);stroke-width:3;stroke:rgb(0,0,0)"/>
 
 
 
 
-<rect x="20" width="20" height="20" style="fill:rgb(0,0,255);stroke-width:3;stroke:rgb(0,0,0)"/>
+<rect x="90" width="12.67401849" height="226.7401849" style="fill:rgb(0,0,255);stroke-width:3;stroke:rgb(0,0,0)"/>
 
 
 
 
-<rect x="40" width="20" height="20" style="fill:rgb(0,0,255);stroke-width:3;stroke:rgb(0,0,0)"/>
+<rect x="180" width="3.22583006" height="132.25830059999998" style="fill:rgb(0,0,255);stroke-width:3;stroke:rgb(0,0,0)"/>
 
 
 
 
-<rect x="60" width="20" height="20" style="fill:rgb(0,0,255);stroke-width:3;stroke:rgb(0,0,0)"/>
+<rect x="270" width="0.25281224" height="102.5281224" style="fill:rgb(0,0,255);stroke-width:3;stroke:rgb(0,0,0)"/>
 
 </svg><pre><code>
 
 
 &lt;rect x=&quot;0&quot;
-     width=&quot;20&quot;
-     height=&quot;20&quot;
+     width=&quot;13.93783836&quot;
+     height=&quot;239.3783836&quot;
      style=&quot;fill:rgb(0,0,255);stroke-width:3;stroke:rgb(0,0,0)&quot; /&gt;
 
 
 
 
-&lt;rect x=&quot;20&quot;
-     width=&quot;20&quot;
-     height=&quot;20&quot;
+&lt;rect x=&quot;90&quot;
+     width=&quot;12.67401849&quot;
+     height=&quot;226.7401849&quot;
      style=&quot;fill:rgb(0,0,255);stroke-width:3;stroke:rgb(0,0,0)&quot; /&gt;
 
 
 
 
-&lt;rect x=&quot;40&quot;
-     width=&quot;20&quot;
-     height=&quot;20&quot;
+&lt;rect x=&quot;180&quot;
+     width=&quot;3.22583006&quot;
+     height=&quot;132.25830059999998&quot;
      style=&quot;fill:rgb(0,0,255);stroke-width:3;stroke:rgb(0,0,0)&quot; /&gt;
 
 
 
 
-&lt;rect x=&quot;60&quot;
-     width=&quot;20&quot;
-     height=&quot;20&quot;
+&lt;rect x=&quot;270&quot;
+     width=&quot;0.25281224&quot;
+     height=&quot;102.5281224&quot;
      style=&quot;fill:rgb(0,0,255);stroke-width:3;stroke:rgb(0,0,0)&quot; /&gt;
 
 
