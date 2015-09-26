@@ -56,7 +56,7 @@
     <body>
         <!-- body:start -->
         
-    <div class="book" data-level="1.6.1" data-basepath="../.." data-revision="Thu Sep 24 2015 18:53:14 GMT-0600 (MDT)">
+    <div class="book" data-level="1.6.1" data-basepath="../.." data-revision="Fri Sep 25 2015 22:45:41 GMT-0600 (MDT)">
     
 
 <div class="book-summary">
@@ -831,7 +831,86 @@ will need to do it on your own, replacing the placeholder <code>birdstrike.json<
 real data.</p>
 <h1 id="which-airlines-have-the-worst-luck-with-birdstrikes-in-terms-of-damage-caused">Which airlines have the worst luck with birdstrikes in terms of damage caused?</h1>
 <p>This question was asked by (calebhsu).</p>
-<p><pre><code></code></pre></p>
+<p><pre><code>var groups = _.groupBy(data, function(n) {
+    return n[&apos;Aircraft: Airline/Operator&apos;];
+});
+var i = 0;
+var costs = _.mapValues(groups, function(d){
+    var total = _.reduce(d, function(total,e){
+        // some of the costs are in quotes and have commas...
+        var cost = e[&apos;Cost: Total $&apos;];
+        if (_.isString(cost)){
+            // remove commas
+            var temp1 = cost.replace(/,/g,&apos;&apos;);
+            var temp2 = _.parseInt(temp1);
+            cost = temp2;
+        }
+        return total+cost;
+    },0);
+    return total;
+    
+});
+
+var sorted = _.sortBy(_.pairs(costs), function(d) {
+    return d[1];
+});
+var desc = _(sorted).reverse().value()
+return _.slice(desc,0,10);</code></pre></p>
+<table>
+
+    <tr>
+        <td>BUSINESS</td>
+        <td>103565746</td>
+    </tr>
+
+    <tr>
+        <td>FEDEX EXPRESS</td>
+        <td>80529838</td>
+    </tr>
+
+    <tr>
+        <td>UNITED AIRLINES</td>
+        <td>74830899</td>
+    </tr>
+
+    <tr>
+        <td>US AIRWAYS</td>
+        <td>40259138</td>
+    </tr>
+
+    <tr>
+        <td>DELTA AIR LINES</td>
+        <td>20337701</td>
+    </tr>
+
+    <tr>
+        <td>MILITARY</td>
+        <td>16899033</td>
+    </tr>
+
+    <tr>
+        <td>SOUTHWEST AIRLINES</td>
+        <td>11792223</td>
+    </tr>
+
+    <tr>
+        <td>GOVERNMENT</td>
+        <td>9983201</td>
+    </tr>
+
+    <tr>
+        <td>UPS AIRLINES</td>
+        <td>8597069</td>
+    </tr>
+
+    <tr>
+        <td>PRIVATELY OWNED</td>
+        <td>7304241</td>
+    </tr>
+
+</table>
+
+
 <h1 id="what-is-the-most-common-flight-phase-where-a-birdstrike-occurred">What is the most common flight phase where a birdstrike occurred?</h1>
 <p>This question was asked by (KevinKGifford).</p>
 <p><pre><code>var group = _.groupBy(data,function(n){
@@ -903,14 +982,372 @@ return result</code></pre></p>
 
 <h1 id="what-airports-have-the-most-expensive-average-accident">What airports have the most expensive average accident?</h1>
 <p>This question was asked by (satchelspencer ).</p>
-<p><pre><code>return &quot;[answer]&quot;</code></pre></p>
+<p><pre><code>var groups = _.groupBy(data, function(n) {
+    return n[&apos;Airport: Name&apos;];
+});
+var i = 0;
+var costs = _.mapValues(groups, function(d){
+    var avg = _.reduce(d, function(total,e){
+        // some of the costs are in quotes and have commas...
+        var cost = e[&apos;Cost: Total $&apos;];
+        if (_.isString(cost)){
+            // remove commas and convert to int
+            var temp1 = cost.replace(/,/g,&apos;&apos;);
+            cost = _.parseInt(temp1);           
+        }
+        return total+cost;
+    },0)/_.size(d);
+    return avg;
+}); 
+var sorted = _.sortBy(_.pairs(costs), function(d) {
+    return d[1];
+});
+var desc = _(sorted).reverse().value()
+return _.slice(desc,0,10);</code></pre></p>
+<table>
+
+    <tr>
+        <td>NICE (FRANCE)</td>
+        <td>10135286</td>
+    </tr>
+
+    <tr>
+        <td>TROY MUNICIPAL ARPT</td>
+        <td>6198875.5</td>
+    </tr>
+
+    <tr>
+        <td>ASTORIA REGIONAL</td>
+        <td>2112899.6666666665</td>
+    </tr>
+
+    <tr>
+        <td>OGDENSBURG INTL ARPT</td>
+        <td>1757025</td>
+    </tr>
+
+    <tr>
+        <td>LA ISABELA  INTL ARPT</td>
+        <td>1500000</td>
+    </tr>
+
+    <tr>
+        <td>TONCONTIN INTL</td>
+        <td>1099149</td>
+    </tr>
+
+    <tr>
+        <td>BARNESVILLE-BRADFLD</td>
+        <td>976201</td>
+    </tr>
+
+    <tr>
+        <td>ANGOLA</td>
+        <td>855658</td>
+    </tr>
+
+    <tr>
+        <td>LOGAN COUNTY ARPT</td>
+        <td>852169</td>
+    </tr>
+
+    <tr>
+        <td>ROSEAU MUNI ARPT/RUDY BILLBERG FLD</td>
+        <td>760644</td>
+    </tr>
+
+</table>
+
 <h1 id="which-plane-strikes-the-most-birds">Which plane strikes the most birds?</h1>
 <p>This question was asked by (twagar95).</p>
-<p><pre><code>return &quot;[answer]&quot;</code></pre></p>
+<p><pre><code>var groups = _.groupBy(data, function(n) {
+    return n[&apos;Aircraft: Make/Model&apos;];
+});
+
+var counts = _.mapValues(groups, function(d){
+    return d.length;
+});
+
+var sorted = _.sortBy(_.pairs(counts), function(d) {
+    return d[1];
+});
+
+var desc = _(sorted).reverse().value()
+
+return _.slice(desc, 0,10);</code></pre></p>
+<table>
+
+    <tr>
+        <td>UNKNOWN</td>
+        <td>24637</td>
+    </tr>
+
+    <tr>
+        <td>B-737-300</td>
+        <td>5524</td>
+    </tr>
+
+    <tr>
+        <td>A-320</td>
+        <td>4654</td>
+    </tr>
+
+    <tr>
+        <td>CL-RJ100/200</td>
+        <td>4262</td>
+    </tr>
+
+    <tr>
+        <td>B-737-700</td>
+        <td>4046</td>
+    </tr>
+
+    <tr>
+        <td>B-757-200</td>
+        <td>3945</td>
+    </tr>
+
+    <tr>
+        <td>A-319</td>
+        <td>3138</td>
+    </tr>
+
+    <tr>
+        <td>EMB-145</td>
+        <td>2067</td>
+    </tr>
+
+    <tr>
+        <td>A-300</td>
+        <td>2055</td>
+    </tr>
+
+    <tr>
+        <td>B-727-200</td>
+        <td>1771</td>
+    </tr>
+
+</table>
+
+
 <h1 id="what-state-had-the-highest-number-of-bird-strikes-departure-state">What state had the highest number of bird strikes? (Departure State)</h1>
 <p>This question was asked by (drewdinger).</p>
-<p><pre><code>return &quot;[answer]&quot;</code></pre></p>
+<p><pre><code>var grps = _.groupBy(data, &apos;Origin State&apos;)
 
+var map = _.mapValues(grps, function(d){
+    return d.length
+})
+
+var newvar = _.map(map, function(v,k){
+	return {&quot;state&quot;: k, &quot;count&quot;:v}
+})
+
+_.remove(newvar, function(n){
+ 	return n.state == &apos;N/A&apos;	
+})
+var sorted = _.sortBy(newvar, &quot;count&quot;).reverse()
+return _.slice(sorted,0,10)</code></pre></p>
+<p><pre style="font-size:11px;line-height:1;max-height:300px;">[
+ {
+  &quot;Aircraft: Type&quot;: &quot;Airplane&quot;,
+  &quot;Airport: Name&quot;: &quot;NEWARK LIBERTY INTL ARPT&quot;,
+  &quot;Altitude bin&quot;: &quot;&lt; 1000 ft&quot;,
+  &quot;Aircraft: Make/Model&quot;: &quot;B-757-200&quot;,
+  &quot;Wildlife: Number struck&quot;: &quot;2 to 10&quot;,
+  &quot;Effect: Impact to flight&quot;: &quot;&quot;,
+  &quot;Effect: Other&quot;: &quot;&quot;,
+  &quot;Location: Nearby if en route&quot;: &quot;&quot;,
+  &quot;Aircraft: Flight Number&quot;: 586,
+  &quot;FlightDate&quot;: &quot;1/1/00 0:00&quot;,
+  &quot;Record ID&quot;: 200508,
+  &quot;Effect: Indicated Damage&quot;: &quot;No damage&quot;,
+  &quot;Location: Freeform en route&quot;: &quot;&quot;,
+  &quot;Aircraft: Number of engines?&quot;: 2,
+  &quot;Aircraft: Airline/Operator&quot;: &quot;CONTINENTAL AIRLINES&quot;,
+  &quot;Origin State&quot;: &quot;New Jersey&quot;,
+  &quot;When: Phase of flight&quot;: &quot;Take-off run&quot;,
+  &quot;Conditions: Precipitation&quot;: &quot;Fog&quot;,
+  &quot;Remains of wildlife collected?&quot;: &quot;FALSE&quot;,
+  &quot;Remains of wildlife sent to Smithsonian&quot;: &quot;FALSE&quot;,
+  &quot;Remarks&quot;: &quot;3 BIRDS. NO DMG&quot;,
+  &quot;Reported: Date&quot;: &quot;&quot;,
+  &quot;Wildlife: Size&quot;: &quot;Medium&quot;,
+  &quot;Conditions: Sky&quot;: &quot;Overcast&quot;,
+  &quot;Wildlife: Species&quot;: &quot;Unknown bird - medium&quot;,
+  &quot;When: Time (HHMM)&quot;: 943,
+  &quot;When: Time of day&quot;: &quot;Day&quot;,
+  &quot;Pilot warned of birds or wildlife?&quot;: &quot;Y&quot;,
+  &quot;Cost: Aircraft time out of service (hours)&quot;: &quot;&quot;,
+  &quot;Cost: Other (inflation adj)&quot;: 0,
+  &quot;Cost: Repair (inflation adj)&quot;: 0,
+  &quot;Cost: Total $&quot;: 0,
+  &quot;Miles from airport&quot;: 0,
+  &quot;Feet above ground&quot;: 0,
+  &quot;Number of human fatalities&quot;: &quot;&quot;,
+  &quot;Number of people injured&quot;: &quot;&quot;,
+  &quot;Speed (IAS) in knots&quot;: &quot;&quot;
+ },
+ {
+  &quot;Aircraft: Type&quot;: &quot;Airplane&quot;,
+  &quot;Airport: Name&quot;: &quot;UNKNOWN&quot;,
+  &quot;Altitude bin&quot;: &quot;Unknown&quot;,
+  &quot;Aircraft: Make/Model&quot;: &quot;B-737-300&quot;,
+  &quot;Wildlife: Number struck&quot;: 1,
+  &quot;Effect: Impact to flight&quot;: &quot;&quot;,
+  &quot;Effect: Other&quot;: &quot;&quot;,
+  &quot;Location: Nearby if en route&quot;: &quot;&quot;,
+  &quot;Aircraft: Flight Number&quot;: &quot;&quot;,
+  &quot;FlightDate&quot;: &quot;1/1/00 0:00&quot;,
+  &quot;Record ID&quot;: 206593,
+  &quot;Effect: Indicated Damage&quot;: &quot;No damage&quot;,
+  &quot;Location: Freeform en route&quot;: &quot;HDN-LAX&quot;,
+  &quot;Aircraft: Number of engines?&quot;: 2,
+  &quot;Aircraft: Airline/Operator&quot;: &quot;UNITED AIRLINES&quot;,
+  &quot;Origin State&quot;: &quot;N/A&quot;,
+  &quot;When: Phase of flight&quot;: &quot;&quot;,
+  &quot;Conditions: Precipitation&quot;: &quot;&quot;,
+  &quot;Remains of wildlife collected?&quot;: &quot;FALSE&quot;,
+  &quot;Remains of wildlife sent to Smithsonian&quot;: &quot;FALSE&quot;,
+  &quot;Remarks&quot;: &quot;BIRD DEBRIS REMOVED&quot;,
+  &quot;Reported: Date&quot;: &quot;&quot;,
+  &quot;Wildlife: Size&quot;: &quot;Medium&quot;,
+  &quot;Conditions: Sky&quot;: &quot;&quot;,
+  &quot;Wildlife: Species&quot;: &quot;Unknown bird - medium&quot;,
+  &quot;When: Time (HHMM)&quot;: &quot;&quot;,
+  &quot;When: Time of day&quot;: &quot;&quot;,
+  &quot;Pilot warned of birds or wildlife?&quot;: &quot;&quot;,
+  &quot;Cost: Aircraft time out of service (hours)&quot;: &quot;&quot;,
+  &quot;Cost: Other (inflation adj)&quot;: 0,
+  &quot;Cost: Repair (inflation adj)&quot;: 0,
+  &quot;Cost: Total $&quot;: 0,
+  &quot;Miles from airport&quot;: &quot;&quot;,
+  &quot;Feet above ground&quot;: &quot;&quot;,
+  &quot;Number of human fatalities&quot;: &quot;&quot;,
+  &quot;Number of people injured&quot;: &quot;&quot;,
+  &quot;Speed (IAS) in knots&quot;: &quot;&quot;
+ },
+ {
+  &quot;Aircraft: Type&quot;: &quot;Airplane&quot;,
+  &quot;Airport: Name&quot;: &quot;DENVER INTL AIRPORT&quot;,
+  &quot;Altitude bin&quot;: &quot;Unknown&quot;,
+  &quot;Aircraft: Make/Model&quot;: &quot;B-737-300&quot;,
+  &quot;Wildlife: Number struck&quot;: 1,
+  &quot;Effect: Impact to flight&quot;: &quot;&quot;,
+  &quot;Effect: Other&quot;: &quot;&quot;,
+  &quot;Location: Nearby if en route&quot;: &quot;&quot;,
+  &quot;Aircraft: Flight Number&quot;: &quot;&quot;,
+  &quot;FlightDate&quot;: &quot;1/1/00 0:00&quot;,
+  &quot;Record ID&quot;: 206594,
+  &quot;Effect: Indicated Damage&quot;: &quot;No damage&quot;,
+  &quot;Location: Freeform en route&quot;: &quot;&quot;,
+  &quot;Aircraft: Number of engines?&quot;: 2,
+  &quot;Aircraft: Airline/Operator&quot;: &quot;UNITED AIRLINES&quot;,
+  &quot;Origin State&quot;: &quot;Colorado&quot;,
+  &quot;When: Phase of flight&quot;: &quot;Climb&quot;,
+  &quot;Conditions: Precipitation&quot;: &quot;&quot;,
+  &quot;Remains of wildlife collected?&quot;: &quot;FALSE&quot;,
+  &quot;Remains of wildlife sent to Smithsonian&quot;: &quot;FALSE&quot;,
+  &quot;Remarks&quot;: &quot;BIRDSTRIKE ON DEPTR. HEAVY BIRD SMELL IN CABIN. NO ENG PARAMETER  SHIFT OR VIBRATION. INSPCTD ENG.&quot;,
+  &quot;Reported: Date&quot;: &quot;&quot;,
+  &quot;Wildlife: Size&quot;: &quot;Medium&quot;,
+  &quot;Conditions: Sky&quot;: &quot;&quot;,
+  &quot;Wildlife: Species&quot;: &quot;Unknown bird - medium&quot;,
+  &quot;When: Time (HHMM)&quot;: &quot;&quot;,
+  &quot;When: Time of day&quot;: &quot;&quot;,
+  &quot;Pilot warned of birds or wildlife?&quot;: &quot;&quot;,
+  &quot;Cost: Aircraft time out of service (hours)&quot;: &quot;&quot;,
+  &quot;Cost: Other (inflation adj)&quot;: 0,
+  &quot;Cost: Repair (inflation adj)&quot;: 0,
+  &quot;Cost: Total $&quot;: 0,
+  &quot;Miles from airport&quot;: &quot;&quot;,
+  &quot;Feet above ground&quot;: &quot;&quot;,
+  &quot;Number of human fatalities&quot;: &quot;&quot;,
+  &quot;Number of people injured&quot;: &quot;&quot;,
+  &quot;Speed (IAS) in knots&quot;: &quot;&quot;
+ },
+ {
+  &quot;Aircraft: Type&quot;: &quot;Airplane&quot;,
+  &quot;Airport: Name&quot;: &quot;CHICAGO O&apos;HARE INTL ARPT&quot;,
+  &quot;Altitude bin&quot;: &quot;Unknown&quot;,
+  &quot;Aircraft: Make/Model&quot;: &quot;B-727-200&quot;,
+  &quot;Wildlife: Number struck&quot;: 1,
+  &quot;Effect: Impact to flight&quot;: &quot;&quot;,
+  &quot;Effect: Other&quot;: &quot;&quot;,
+  &quot;Location: Nearby if en route&quot;: &quot;&quot;,
+  &quot;Aircraft: Flight Number&quot;: &quot;&quot;,
+  &quot;FlightDate&quot;: &quot;1/1/00 0:00&quot;,
+  &quot;Record ID&quot;: 204095,
+  &quot;Effect: Indicated Damage&quot;: &quot;No damage&quot;,
+  &quot;Location: Freeform en route&quot;: &quot;&quot;,
+  &quot;Aircraft: Number of engines?&quot;: 3,
+  &quot;Aircraft: Airline/Operator&quot;: &quot;UNITED AIRLINES&quot;,
+  &quot;Origin State&quot;: &quot;Illinois&quot;,
+  &quot;When: Phase of flight&quot;: &quot;Approach&quot;,
+  &quot;Conditions: Precipitation&quot;: &quot;&quot;,
+  &quot;Remains of wildlife collected?&quot;: &quot;FALSE&quot;,
+  &quot;Remains of wildlife sent to Smithsonian&quot;: &quot;FALSE&quot;,
+  &quot;Remarks&quot;: &quot;&quot;,
+  &quot;Reported: Date&quot;: &quot;&quot;,
+  &quot;Wildlife: Size&quot;: &quot;Medium&quot;,
+  &quot;Conditions: Sky&quot;: &quot;&quot;,
+  &quot;Wildlife: Species&quot;: &quot;Unknown bird - medium&quot;,
+  &quot;When: Time (HHMM)&quot;: &quot;&quot;,
+  &quot;When: Time of day&quot;: &quot;&quot;,
+  &quot;Pilot warned of birds or wildlife?&quot;: &quot;&quot;,
+  &quot;Cost: Aircraft time out of service </pre></p>
+<table>
+
+    <tr>
+        <td></td>
+        <td></td>
+    </tr>
+
+    <tr>
+        <td></td>
+        <td></td>
+    </tr>
+
+    <tr>
+        <td></td>
+        <td></td>
+    </tr>
+
+    <tr>
+        <td></td>
+        <td></td>
+    </tr>
+
+    <tr>
+        <td></td>
+        <td></td>
+    </tr>
+
+    <tr>
+        <td></td>
+        <td></td>
+    </tr>
+
+    <tr>
+        <td></td>
+        <td></td>
+    </tr>
+
+    <tr>
+        <td></td>
+        <td></td>
+    </tr>
+
+    <tr>
+        <td></td>
+        <td></td>
+    </tr>
+
+    <tr>
+        <td></td>
+        <td></td>
+    </tr>
+
+</table>
                     
                     </section>
                 
