@@ -56,7 +56,7 @@
     <body>
         <!-- body:start -->
         
-    <div class="book" data-level="1.6.4" data-basepath="../.." data-revision="Sun Sep 27 2015 21:27:51 GMT-0600 (MDT)">
+    <div class="book" data-level="1.6.4" data-basepath="../.." data-revision="Sun Sep 27 2015 21:32:02 GMT-0600 (MDT)">
     
 
 <div class="book-summary">
@@ -2667,10 +2667,8 @@ function computeLabel(d,i) {
 function computeColor(d, i) {
     var values = _.pluck(data,&apos;Defense&apos;)
     var maxValue = _.max(values)
-
-    var s = _.round(255/maxValue)
-    var r = d.Defense * s
-    return &apos;rgb(&apos; + r + &apos;,0,0)&apos;
+    var redValue = (_.round(255/maxValue)) * d.Defense
+    return &apos;rgb(&apos; + redValue + &apos;,0,0)&apos;
     
 }
 
