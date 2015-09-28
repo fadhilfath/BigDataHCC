@@ -101,10 +101,8 @@ function computeLabel(d,i) {
 function computeColor(d, i) {
     var values = _.pluck(data,'Defense')
     var maxValue = _.max(values)
-
-    var s = _.round(255/maxValue)
-    var r = d.Defense * s
-    return 'rgb(' + r + ',0,0)'
+    var redValue = (_.round(255/maxValue)) * d.Defense
+    return 'rgb(' + redValue + ',0,0)'
     
 }
 
