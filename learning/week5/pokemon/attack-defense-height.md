@@ -84,11 +84,15 @@ function computeX(d, i) {
 }
 
 function computeWidth(d, i) {
-    return i * 10 + 10
+    return d.Attack
 }
 
 function computeHeight(d, i) {
-    return i * 10 + 10
+    return d.Defense
+}
+
+function computeLabel(d,i) {
+  return d.Name
 }
 
 // HINT: figure out a way to compute a Y offset on each call to return the sum of of the heights
@@ -107,7 +111,8 @@ var viz = _.map(data, function(d, i){
                 y: computeY(d, i),
                 height: computeHeight(d, i),
                 width: computeWidth(d, i),
-                color: computeColor(d, i)
+                color: computeColor(d, i),
+                label:computeLabel(d,i)
             }
          })
 console.log(viz)
@@ -120,11 +125,15 @@ return result.join('\n')
 
 {% template %}
 <g transform="translate(0 ${d.y})">
-    <rect width="${d.width}"
+    <rect
+         y="${d.y}" 
+         width="${d.width}"
          height="${d.height}"
          style="fill:${d.color};
                 stroke-width:1;
                 stroke:rgb(0,0,0)" />
+    <text x="115" y="10">${d.label}</text>
+
 </g>
 
 {% output %}
