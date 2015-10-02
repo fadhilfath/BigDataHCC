@@ -1,4 +1,4 @@
-{% data src="bs.json" %}
+{% data src="../../bs.json" %}
 {% enddata %}
 
 # Report
